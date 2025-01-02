@@ -8,16 +8,16 @@ function Carros(marca, modelo, color, anio, titular){
     this.titular = titular
 }
 
-Carros.prototype.venderAutomovil = function(){
-    Carros.prototype.titular = "";
+Carros.prototype.venderAutomovil = function(nuevoTitular){
+    this.titular = nuevoTitular
 }
 
 Carros.prototype.verAuto = function () {
     return `${this.marca} ${this.modelo} ${this.color} ${this.anio} ${this.titular}`
 }
 
-Carros.prototype.encer = function () {
-    alert("El auto esta en marcha");
+Carros.prototype.encender = function () {
+    return alert( `El ${this.modelo} esta en marcha`); 
 }
 
 let chevrolet = new Carros("chevrolet", "chevy", "rojo", 2000, "Hector");
@@ -34,11 +34,18 @@ function mostarVehiculos(){
     for(let mostrarCarro of automoviles){
         const listaCarros = document.createElement("li");
         listaCarros.className = "carrosVenta";
-        listaCarros.innerText = mostrarCarro.verAuto();
+        listaCarros.innerText = mostrarCarro.verAuto() + mostrarCarro.venderAutomovil();
         verCarros.appendChild(listaCarros);
         
-        console.log(mostrarCarro.verAuto());
+        if(verCarros && listaCarros){
+            listaCarros.addEventListener("click", function (){
+                mostrarCarro.encender();
+                console.log(listaCarros);
+            })
+        }
     }
+    
 }
+
 
 
